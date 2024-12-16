@@ -343,7 +343,7 @@ def init_properties():
     bpy.types.Object.arm_spawn = BoolProperty(name="Spawn", description="Auto-add this object when creating scene", default=True, override={'LIBRARY_OVERRIDABLE'})
     bpy.types.Object.arm_mobile = BoolProperty(name="Mobile", description="Object moves during gameplay", default=False, override={'LIBRARY_OVERRIDABLE'})
     bpy.types.Object.arm_visible = BoolProperty(name="Visible", description="Render this object", default=True, override={'LIBRARY_OVERRIDABLE'})
-    bpy.types.Object.arm_lighting = BoolProperty(name="Lighting", description="Object contributes to the lighting", default=True, override={'LIBRARY_OVERRIDABLE'})
+    bpy.types.Object.arm_visible_shadow = BoolProperty(name="Lighting", description="Object contributes to the lighting even if invisible", default=True, override={'LIBRARY_OVERRIDABLE'})
     bpy.types.Object.arm_soft_body_margin = FloatProperty(name="Soft Body Margin", description="Collision margin", default=0.04)
     bpy.types.Object.arm_rb_linear_factor = FloatVectorProperty(name="Linear Factor", size=3, description="Set to 0 to lock axis", default=[1,1,1])
     bpy.types.Object.arm_rb_angular_factor = FloatVectorProperty(name="Angular Factor", size=3, description="Set to 0 to lock axis", default=[1,1,1])
@@ -537,7 +537,20 @@ def init_properties():
     # Particles
     bpy.types.ParticleSettings.arm_count_mult = FloatProperty(name="Multiply Count", description="Multiply particle count when rendering in Armory", default=1.0)
     bpy.types.ParticleSettings.arm_loop = BoolProperty(name="Loop", description="Loop this particle system", default=False)
-
+    # Actions
+    bpy.types.Action.arm_root_motion_pos = BoolProperty(name="Root Motion Position", description="Enable position root motion", default=False)
+    bpy.types.Action.arm_root_motion_rot = BoolProperty(name="Root Motion Rotation", description="Enable rotation root motion", default=False)
+    bpy.types.World.arm_action_retarget_pos_x = BoolProperty(name="Position X", description="Retarget Position X", default=True)
+    bpy.types.World.arm_action_retarget_pos_y = BoolProperty(name="Position Y", description="Retarget Position Y", default=True)
+    bpy.types.World.arm_action_retarget_pos_z = BoolProperty(name="Position Z", description="Retarget Position Z", default=False)
+    bpy.types.World.arm_action_retarget_rot_x = BoolProperty(name="Rotation X", description="Retarget Rotation X", default=False)
+    bpy.types.World.arm_action_retarget_rot_y = BoolProperty(name="Rotation Y", description="Retarget Rotation Y", default=False)
+    bpy.types.World.arm_action_retarget_rot_z = BoolProperty(name="Rotation Z", description="Retarget Rotation Z", default=False)
+    bpy.types.World.arm_action_retarget_rot_z = BoolProperty(name="Rotation Z", description="Retarget Rotation Z", default=True)
+    bpy.types.World.arm_retarget_armature = PointerProperty(name="Armature", description="Armature", type=bpy.types.Object)
+    bpy.types.World.arm_retarget_overwrite = BoolProperty(name="Overwrite", description="Overwrite action", default=True)
+    bpy.types.World.arm_retarget_from = StringProperty(name="From Bone", description="From Bone")
+    bpy.types.World.arm_retarget_to = StringProperty(name="To Bone", description="To Bone")
     create_wrd()
 
 def create_wrd():
