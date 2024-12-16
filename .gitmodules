@@ -16,3 +16,6 @@
 [submodule "lib/haxebullet"]
 	path = lib/haxebullet
 	url = https://github.com/armory3d/haxebullet
+[submodule "nodejs_bin"]
+	path = nodejs_bin
+	url = https://github.com/armory3d/nodejs_bin
